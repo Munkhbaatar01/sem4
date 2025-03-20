@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LoginContext } from './loginContext';
 
 const Login = () => {
@@ -45,6 +45,9 @@ const Login = () => {
         >
           Login
         </button>
+        <Link to='/signup'>
+          <p className="text-blue-500 text-center mt-4 hover:underline">Sign Up</p>
+          </Link>
       </div>
     </div>
   );

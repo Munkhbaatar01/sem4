@@ -75,27 +75,19 @@ function AppLayout() {
           <Link className="text-white p-2 hover:bg-gray-400 rounded" to="/about" style={{ padding: 5 }}>
             About
           </Link>
-          <Link className="text-white p-2 hover:bg-gray-400 rounded" to="/basket" style={{ padding: 5 }}>
-            Basket
-          </Link>
+         
           <Link className="text-white p-2 hover:bg-gray-400 rounded" to="/products" style={{ padding: 5 }}>
             Products
           </Link>
-          <Link className="text-white p-2 hover:bg-gray-400 rounded" to="/productList" style={{ padding: 5 }}>
-            Product List  
-          </Link>
-          <Link className="text-white p-2 hover:bg-gray-400 rounded" to="/signup" style={{ padding: 5 }}>
-            Sign Up
-          </Link>
+          
           <span> | </span>
-          {user && (
-            <Link className="text-white p-2 hover:bg-gray-400 rounded" to="/stats" style={{ padding: 5 }}>
-              Account
+          {user && ( 
+             <Link className="text-white p-2 hover:bg-gray-400 rounded" to="/stats">
             </Link>
           )}
           {!user && (
             <Link className="text-white p-2 hover:bg-gray-400 rounded" to="/login" style={{ padding: 5 }}>
-              Login
+               <img src="https://th.bing.com/th/id/R.47cecf6ce91d73af7900067efeaacb63?rik=%2btKMy%2fBRVLblKA&pid=ImgRaw&r=0.png" alt="user" style={{ width: 50, height:50 }} className='' />
             </Link>
           )}
         </div>

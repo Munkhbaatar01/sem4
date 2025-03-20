@@ -17,7 +17,7 @@ export const ProductListProvider = ({ children }) => {
       .then((data) => {
         console.log('API Response:', data);
         if (Array.isArray(data)) {
-          setProducts(data); // Directly set the array of products
+          setProducts(data);
         } else {
           throw new Error('Invalid product data format');
         }

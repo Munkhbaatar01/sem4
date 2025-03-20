@@ -4,6 +4,7 @@ import { ProductContext } from './ProductContext';
 import ColorList from './colorList';
 import Counter from './counter';
 import Filter from './filter';
+import { Link } from 'react-router-dom';
 
 const Products = () => {
   const { addToCart, updateCartColor, updateCartQuantity } = useContext(CartContext);
@@ -18,19 +19,27 @@ const Products = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-100 p-6">
-      <Filter onFilterChange={(filters) => console.log(filters)} />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl">
-        {products.map((product) => (
-          <Product 
-            key={product.id} 
-            product={product} 
-            addToCart={addToCart} 
-            updateCartColor={updateCartColor} 
-            updateCartQuantity={updateCartQuantity} 
-          />
-        ))}
-      </div>
+    <div className="flex gap-4 mb-4">
+      <Link to='/productList'>
+        <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow">Product Lists</button>
+      </Link>
+      <Link to='/basket'>
+        <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow">Basket</button>
+      </Link>
     </div>
+    <Filter onFilterChange={(filters) => console.log(filters)} />
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl">
+      {products.map((product) => (
+        <Product 
+          key={product.id || Math.random()} 
+          product={product} 
+          addToCart={addToCart} 
+          updateCartColor={updateCartColor} 
+          updateCartQuantity={updateCartQuantity} 
+        />
+      ))}
+    </div>
+  </div>
   );
 };const Product = ({ product, addToCart, updateCartColor, updateCartQuantity }) => {
   const [selectedcolor, setSelectedColor] = useState(
@@ -59,24 +68,28 @@ const Products = () => {
     if (updateCartQuantity) updateCartQuantity(product.id, newQuantity);
   };
 
-  return (
-    <div className="border border-gray-300 p-4 m-4 w-full rounded-lg text-center bg-white shadow-md">
-      <img
-        src={product.color} 
-        alt={product.name}
-        className="w-full h-48 object-cover mb-4 rounded"
-      />
-      <h2 className="text-xl font-bold mb-2">{product.name}</h2>
-      <h2 className="font-sans mb-4">Price: ${product.price}</h2>
+  return (<div className="border border-gray-300 p-6 m-6 w-full rounded-2xl text-center bg-white shadow-lg space-y-6">
+    <img
+      src={product.color}
+      alt={product.name}
+      className="w-full h-52 object-cover rounded-xl shadow-sm"
+    />
+    <h2 className="text-2xl font-semibold">{product.name}</h2>
+    <h2 className="text-lg text-gray-700">Price: <span className="font-bold text-gray-900">${product.price}</span></h2>
+    
+    <div className="flex flex-col items-center space-y-4">
       <ColorList colors={colors} updateColor={handleColorChange} color={selectedcolor} />
       <Counter stock={product.stock} quantity={quantity} updateQuantity={handleQuantityChange} />
-      <button
-        onClick={handleAddToCart}
-        className="bg-green-500 text-white p-2 rounded mt-4"
-      >
-        Add to Cart
-      </button>
     </div>
+  
+    <button
+      onClick={handleAddToCart}
+      className="bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-lg shadow-md transition-all duration-300"
+    >
+      Add to Cart
+    </button>
+  </div>
+  
   );
 };
 export default Products;
