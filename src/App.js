@@ -87,7 +87,7 @@ function AppLayout() {
           )}
           {!user && (
             <Link className="text-white p-2 hover:bg-gray-400 rounded" to="/login" style={{ padding: 5 }}>
-               <img src="https://th.bing.com/th/id/R.47cecf6ce91d73af7900067efeaacb63?rik=%2btKMy%2fBRVLblKA&pid=ImgRaw&r=0.png" alt="user" style={{ width: 50, height:50 }} className='' />
+               <img src="https://th.bing.com/th/id/R.47cecf6ce91d73af7900067efeaacb63?rik=%2btKMy%2fBRVLblKA&pid=ImgRaw&r=0.png" alt="user" style={{ width: 30, height:30 }} className='' />
             </Link>
           )}
         </div>
